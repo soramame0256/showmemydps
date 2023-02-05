@@ -33,7 +33,7 @@ public class EventListener {
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent e){
         checkExpires();
-        if(getCurrentTitle().contains("The defence system") && getTotalDamage() != 0) reset();
+        if(getCurrentTitle().replaceAll(colorReg,"").equals("The defense system") && getTotalDamage() != 0) reset();
         if(Minecraft.getMinecraft().world == null) return;
         for(Entity en : Minecraft.getMinecraft().world.getEntities(EntityArmorStand.class, (ent) -> ent.getDisplayName().getUnformattedText().contains("-"))) {
             String name = en.getDisplayName().getUnformattedText();
