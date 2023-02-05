@@ -1,11 +1,14 @@
 package com.github.soramame0256.showmemydps;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -30,6 +33,7 @@ public class EventListener {
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent e){
         checkExpires();
+        if(getCurrentTitle().contains("The defence system") && getTotalDamage() != 0) reset();
         if(Minecraft.getMinecraft().world == null) return;
         for(Entity en : Minecraft.getMinecraft().world.getEntities(EntityArmorStand.class, (ent) -> ent.getDisplayName().getUnformattedText().contains("-"))) {
             String name = en.getDisplayName().getUnformattedText();
@@ -58,13 +62,23 @@ public class EventListener {
     public void onChatReceive(ClientChatReceivedEvent e){
         String s = e.getMessage().getUnformattedText().replaceAll(colorReg,"");
         //the nameless anomaly boss prepare room lore.
-        if(s.contains("And what is responsible? What remains here should not- trapped far from whence it came. What feeds the paradox") || s.contains("[!] The defence system has been enabled!")){
+        if(s.contains("And what is responsible? What remains here should not- trapped far from whence it came. What feeds the paradox")){
             reset();
         }
         if(s.contains("[!] The Raid Reward chest has been unlocked.")){
             ShowCommand.showMsg(Minecraft.getMinecraft().player);
         }
 
+
+    }
+    private static String getCurrentTitle(){
+        String a;
+        if (Loader.instance().getMCVersionString().equals("Minecraft 1.12.2")){
+            a = ObfuscationReflectionHelper.getPrivateValue(GuiIngame.class, Minecraft.getMinecraft().ingameGUI, "field_175201_x");
+        }else {
+            a= ObfuscationReflectionHelper.getPrivateValue(GuiIngame.class, Minecraft.getMinecraft().ingameGUI, "field_175201_x", "");
+        }
+        return a==null? "": a;
     }
     private void checkExpires(){
         if(expire.size() == 0) return;
