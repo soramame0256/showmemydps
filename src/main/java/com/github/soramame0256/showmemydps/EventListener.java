@@ -58,7 +58,7 @@ public class EventListener {
     public void onChatReceive(ClientChatReceivedEvent e){
         String s = e.getMessage().getUnformattedText().replaceAll(colorReg,"");
         //the nameless anomaly boss prepare room lore.
-        if(s.contains("And what is responsible? What remains here should not- trapped far from whence it came. What feeds the paradox")){
+        if(s.contains("And what is responsible? What remains here should not- trapped far from whence it came. What feeds the paradox") || s.contains("[!] The defence system has been enabled!")){
             reset();
         }
         if(s.contains("[!] The Raid Reward chest has been unlocked.")){
