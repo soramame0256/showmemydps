@@ -3,7 +3,7 @@
     "modid": "showmemydps",
     "name": "ShowMeMyDPS",
     "description": "A mod that sums your damage",
-    "version": "SNAPSHOT-1.2",
+    "version": "1.2-SNAPSHOT",
     "mcversion": "${mcversion}",
     "url": "",
     "updateUrl": "",
