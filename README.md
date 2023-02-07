@@ -6,7 +6,7 @@ It automatically counts the damage after the start of the following battles and 
 ・During the battle with Raid bosses (Grootslang, Orphion, Canyon Colossus, Greg)
 <br>
 ・Legendary Islands
-<br>
+
 Download Latest:<br><https://github.com/soramame0256/showmemydps/releases/download/1.3-SNAPSHOT/showmemydps-1.3-SNAPSHOT.jar>
 # What are the outputs
 DPS: Average DPS during the battle
