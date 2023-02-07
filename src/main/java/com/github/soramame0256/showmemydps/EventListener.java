@@ -27,8 +27,11 @@ public class EventListener {
     private static final int EXPIRE_WHEN = 5000;
     private long damage = 0;
     private int hitCount = 0;
+    private Instant tickHandle = Instant.now();
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent e){
+        if(tickHandle.toEpochMilli()+50 > Instant.now().toEpochMilli()) return;
+        tickHandle = Instant.now();
         checkExpires();
         if((isBossStartTitle(getCurrentTitle().replaceAll(colorReg,""))||isBossStartTitle(getCurrentSubTitle().replaceAll(colorReg,""))) && getTotalDamage() != 0) {
             reset();
