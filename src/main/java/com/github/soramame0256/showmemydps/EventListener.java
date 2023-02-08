@@ -33,7 +33,7 @@ public class EventListener {
         if(tickHandle.toEpochMilli()+50 > Instant.now().toEpochMilli()) return;
         tickHandle = Instant.now();
         checkExpires();
-        if((isBossStartTitle(getCurrentTitle().replaceAll(colorReg,""))||isBossStartTitle(getCurrentSubTitle().replaceAll(colorReg,""))) && getTotalDamage() != 0) {
+        if(damage != 0 && (isBossStartTitle(getCurrentTitle().replaceAll(colorReg,""))||isBossStartTitle(getCurrentSubTitle().replaceAll(colorReg,"")))) {
             reset();
         }
         if(Minecraft.getMinecraft().world == null) return;

@@ -42,6 +42,7 @@ public class ShowCommand extends CommandBase {
         Instant instant = ShowMeMyDps.EVENT_LISTENER.getStartWhen();
         long in = Instant.now().getEpochSecond() - instant.getEpochSecond();
         sender.sendMessage(new TextComponentString("§bDPS: " + totalDamage/in));
+        sender.sendMessage(new TextComponentString("§b→Time: " + in + " seconds"));
         sender.sendMessage(new TextComponentString("§bAvg/hit: " + totalDamage/hitCount));
         sender.sendMessage(new TextComponentString("§bTotal: " + totalDamage));
     }
