@@ -4,7 +4,7 @@ plugins {
 
 
 group = 'com.github.soramame0256'
-version = '1.3-SNAPSHOT'
+version = '1.4-SNAPSHOT'
 
 java {
     archivesBaseName = 'showmemydps'
