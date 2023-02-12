@@ -7,7 +7,7 @@ It automatically counts the damage after the start of the following battles and 
 <br>
 ・Legendary Islands
 
-Download Latest:<br><https://github.com/soramame0256/showmemydps/releases/download/1.3-SNAPSHOT/showmemydps-1.3-SNAPSHOT.jar>
+Download Latest:<br><https://github.com/soramame0256/showmemydps/releases/download/1.4-SNAPSHOT/showmemydps-1.4-SNAPSHOT.jar>
 # What are the outputs
 DPS: Average DPS during the battle
 <br>
