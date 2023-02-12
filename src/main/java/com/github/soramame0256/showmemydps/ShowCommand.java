@@ -9,6 +9,9 @@ import net.minecraft.util.text.TextComponentString;
 import java.time.Instant;
 
 public class ShowCommand extends CommandBase {
+    public static int x = 450;
+    public static int y = 460;
+    public static boolean hud = false;
     @Override
     public String getName() {
         return "showdps";
@@ -30,6 +33,15 @@ public class ShowCommand extends CommandBase {
             if(args[0].equalsIgnoreCase("reset")){
                 showMsg(sender);
                 ShowMeMyDps.EVENT_LISTENER.reset();
+            }
+            if(args.length >= 2 && args[0].equalsIgnoreCase("hud")){
+                if(args.length == 2 && args[1].equalsIgnoreCase("toggle")){
+                    sender.sendMessage(new TextComponentString("HUD " + ((hud = !hud) ? "Enabled!" : "Disabled!")));
+                } else if(args.length == 3) {
+                    x = Integer.parseInt(args[1]);
+                    y = Integer.parseInt(args[2]);
+                    sender.sendMessage(new TextComponentString("HUD Location Changed!"));
+                }
             }
         }else{
             showMsg(sender);
