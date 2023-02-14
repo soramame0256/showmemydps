@@ -34,8 +34,13 @@ The following time is also counted as DPS time
 <br>
 ・Time spent in the Legendary Islands break room
 
+Spells/abilities such as Guardian Angel will not be counted perfectly.
+<details>
+  <summary>Why?</summary>
+   The server removes their damage indicator before final damage,<br>
+   so this mod cannot detect damage dealt after that point.
+</details>
 Please note these will cause errors in the damage outputs
-
 # How to use
 ・In Raid Boss/Legendary Island
 <br>
