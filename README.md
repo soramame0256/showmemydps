@@ -40,6 +40,7 @@ Spells/abilities such as Guardian Angel will not be counted perfectly.
    The server removes their damage indicator before final damage,<br>
    so this mod cannot detect damage dealt after that point.
 </details>
+
 Please note these will cause errors in the damage outputs
 # How to use
 ・In Raid Boss/Legendary Island
