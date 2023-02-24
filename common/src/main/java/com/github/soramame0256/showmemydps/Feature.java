@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Feature {
     private static final Pattern damageReg = Pattern.compile("-(?<damage>\\d+) .");
@@ -39,6 +40,8 @@ public class Feature {
     private final List<Removal<Integer>> dpsAvgDamageList = new ArrayList<>();
     private Instant tickHandle = Instant.now();
     private static Minecraft mc = Minecraft.getInstance();
+    //Sometimes(or Always?) received messages are used as doubled. so it fixes them.
+    private List<Removal<String>> timeoutStrings = new ArrayList<>();
     public void tick(ClientLevel level){
         if(tickHandle.toEpochMilli()+50 <= Instant.now().toEpochMilli()) {
             tickHandle = Instant.now();
@@ -72,6 +75,8 @@ public class Feature {
     }
     public void onChatReceive(Component msg) {
         String s = msg.getString().replaceAll(colorReg, "");
+        if(isTimeoutString(s)) return;
+        timeoutStrings.add(new Removal<>(s, 50));
         //the nameless anomaly boss prepare room lore.
         if (s.contains("And what is responsible? What remains here should not- trapped far from whence it came. What feeds the paradox")) {
             reset();
@@ -112,6 +117,12 @@ public class Feature {
     private boolean isBossStartTitle(String a){
         return a.equals("The defense system") || a.equals("The Light Beast") || a.equals("The Grootslang Wyrmlings");
     }
+    private boolean isTimeoutString(String s){
+        for(Removal<String> a: timeoutStrings){
+            if(s.equals(a.b)) return true;
+        }
+        return false;
+    }
     private void addDamage(String uuid, Integer da){
         int g = damageList.getOrDefault(uuid, 0);
         if(g < da){
@@ -140,6 +151,7 @@ public class Feature {
         long i = Instant.now().toEpochMilli();
         List<String> toRemove = new ArrayList<>();
         dpsAvgDamageList.removeAll(dpsAvgDamageList.stream().filter(Removal::checkExpire).toList());
+        timeoutStrings.removeAll(timeoutStrings.stream().filter(Removal::checkExpire).toList());
         dpsAvg= 0;
         dpsAvgDamageList.forEach(a -> dpsAvg += a.b);
         for(Map.Entry<String, Instant> ep : expire.entrySet()){

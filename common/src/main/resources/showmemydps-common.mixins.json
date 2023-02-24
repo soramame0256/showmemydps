@@ -3,12 +3,13 @@
   "package": "com.github.soramame0256.showmemydps.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
-    "ChatMixin",
     "GuiMixin",
     "MinecraftMixin",
-    "RendererMixin"
+    "RendererMixin",
+    "SystemChatMixin"
   ],
   "mixins": [
+    "PlayerChatMixin"
   ],
   "injectors": {
     "defaultRequire": 1
