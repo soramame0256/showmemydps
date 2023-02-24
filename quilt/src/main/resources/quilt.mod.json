@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "mixin": [
+    "showmemydps.mixins.json",
+    "showmemydps-common.mixins.json"
+  ],
+  "quilt_loader": {
+    "group": "${group}",
+    "id": "showmemydps",
+    "version": "${version}",
+    "name": "ShowMeMyDPS",
+    "description": "A Simple Mod that shows you damage result",
+    "authors": ["soramame_256"],
+    "contact": {
+      "sources": "https://github.com/soramame0256/showmemydps"
+    },
+    "license": "All Rights Reserved",
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "environment": "client",
+    "entrypoints": {
+      "init": [
+        "com.github.soramame0256.showmemydps.quilt.ShowMeMyDPSQuilt"
+      ]
+    },
+    "depends": [
+      {
+        "id": "quilt_loader",
+        "version": "*"
+      },
+      {
+        "id": "quilt_base",
+        "version": "*"
+      },
+      {
+        "id": "minecraft",
+        "version": ">=1.19.3"
+      },
+      {
+        "id": "architectury",
+        "version": ">=6.2.43"
+      }
+    ]
+  }
+}

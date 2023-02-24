@@ -1,0 +1,28 @@
+modLoader = "javafml"
+loaderVersion = "[43,)"
+issueTrackerURL = "https://github.com/soramame0256/showmemydps/issues"
+license = "All Rights Reserved"
+
+[[mods]]
+modId = "showmemydps"
+version = "${version}"
+displayName = "ShowMeMyDPS!"
+authors = "soramame_256"
+description = '''
+A Simple Mod that shows you damage result
+'''
+#logoFile = ""
+
+[[dependencies.showmemydps]]
+modId = "forge"
+mandatory = true
+versionRange = "[43,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.showmemydps]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.19.3,)"
+ordering = "NONE"
+side = "BOTH"

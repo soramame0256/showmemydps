@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "showmemydps",
+  "version": "${version}",
+  "name": "ShowMeMyDPS!",
+  "description": "A Simple Mod that shows you damage result",
+  "authors": [
+    "soramame_256"
+  ],
+  "contact": {
+    "sources": "https://github.com/soramame0256/showmemydps"
+  },
+  "license": "All Rights Reserved",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "com.github.soramame0256.showmemydps.fabric.ShowMeMyDPSFabric"
+    ]
+  },
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.19.3",
+    "architectury": ">=6.2.43"
+  }
+}

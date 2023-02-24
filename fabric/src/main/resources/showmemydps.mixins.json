@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.github.soramame0256.showmemydps.fabric.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+  ],
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
