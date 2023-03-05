@@ -44,7 +44,7 @@ Spells/abilities such as Guardian Angel will not be counted perfectly.
 
 Please note these will cause errors in the damage outputs
 # How to use
-・In Raid Boss/Legendary Island
+・In Raid Boss/Legendary Island/Guild War
 <br>
 The count will start automatically after the start of the battle
 <br>
