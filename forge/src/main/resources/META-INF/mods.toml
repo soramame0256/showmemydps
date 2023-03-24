@@ -18,11 +18,11 @@ modId = "forge"
 mandatory = true
 versionRange = "[43,)"
 ordering = "NONE"
-side = "BOTH"
+side = "CLIENT"
 
 [[dependencies.showmemydps]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.19.3,)"
 ordering = "NONE"
-side = "BOTH"
+side = "CLIENT"

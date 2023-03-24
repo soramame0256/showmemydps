@@ -12,6 +12,11 @@
   },
   "license": "All Rights Reserved",
   "environment": "client",
+  "mixins": [{
+    "config": "showmemydps-common.mixins.json",
+    "environment": "client"
+  }
+  ],
   "entrypoints": {
     "main": [
       "com.github.soramame0256.showmemydps.fabric.ShowMeMyDPSFabric"
@@ -19,7 +24,6 @@
   },
   "depends": {
     "fabric": "*",
-    "minecraft": ">=1.19.3",
-    "architectury": ">=6.2.43"
+    "minecraft": ">=1.19.3"
   }
 }

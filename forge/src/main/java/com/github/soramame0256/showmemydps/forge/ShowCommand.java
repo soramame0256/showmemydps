@@ -1,12 +1,11 @@
-package com.github.soramame0256.showmemydps;
+package com.github.soramame0256.showmemydps.forge;
 
+import com.github.soramame0256.showmemydps.Feature;
+import com.github.soramame0256.showmemydps.ShowMeMyDPS;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
-import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
-import com.mojang.brigadier.context.CommandContextBuilder;
-import com.mojang.brigadier.tree.LiteralCommandNode;
 import net.minecraft.client.Minecraft;
 import net.minecraft.commands.CommandSourceStack;
 

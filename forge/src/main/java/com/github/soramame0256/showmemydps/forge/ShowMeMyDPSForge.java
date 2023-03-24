@@ -1,6 +1,5 @@
 package com.github.soramame0256.showmemydps.forge;
 
-import com.github.soramame0256.showmemydps.ShowCommand;
 import com.github.soramame0256.showmemydps.ShowMeMyDPS;
 import net.minecraftforge.client.event.RegisterClientCommandsEvent;
 import net.minecraftforge.common.MinecraftForge;
