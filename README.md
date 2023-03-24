@@ -8,7 +8,9 @@ It automatically counts the damage after the start of the following battles and 
 ・Legendary Islands
 
 Download Latest:<br>(1.12.2)<https://github.com/soramame0256/showmemydps/releases/download/1.5-SNAPSHOT/showmemydps-1.5-SNAPSHOT.jar>
-<br>(1.19.3)<https://github.com/soramame0256/showmemydps/releases/tag/1.19.3-1.0-SNAPSHOT>
+<br>(1.19.3)<https://github.com/soramame0256/showmemydps/releases/tag/1.19.3-1.0.0-fix.1>
+<br>Note:
+<br><b>This mod requires Fabric-API if you use Fabric or Quilt.</b>
 # What are the outputs
 DPS: Average DPS during the battle
 <br>
