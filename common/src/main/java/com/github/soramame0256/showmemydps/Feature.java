@@ -5,6 +5,7 @@ import com.github.soramame0256.showmemydps.util.Removal;
 import com.github.soramame0256.showmemydps.util.TitleInjector;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.Vec3i;
