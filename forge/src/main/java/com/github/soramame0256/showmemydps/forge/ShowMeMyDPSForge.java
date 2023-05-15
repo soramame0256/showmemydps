@@ -22,6 +22,5 @@ public class ShowMeMyDPSForge {
     @SubscribeEvent
     public void onRender(RenderGuiOverlayEvent.Post e){
         ShowMeMyDPS.featureInstance.render();
-        System.out.println("aaa");
     }
 }
