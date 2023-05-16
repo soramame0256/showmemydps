@@ -7,10 +7,12 @@
 <br>
 ･Legendary Islands
 
+最新バージョンのダウンロード:<br><https://github.com/soramame0256/showmemydps/releases/download/1.5-SNAPSHOT/showmemydps-1.5-SNAPSHOT.jar>
 # 集計結果の内容
 DPS:戦闘中の平均DPS
 <br>
 (戦闘中に出現した-から始まるアーマースタンド名の数値の合計を、総戦闘時間で割ったもの)
+
 
 Avg/hit:戦闘中の1hitあたりの平均ダメージ
 <br>
