@@ -5,15 +5,12 @@ import com.github.soramame0256.showmemydps.util.Removal;
 import com.github.soramame0256.showmemydps.util.TitleInjector;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.core.Vec3i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -22,12 +19,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class Feature {
     private static final Pattern damageReg = Pattern.compile("-(?<damage>\\d+) .");
     public static boolean hud = false;
-    private static final String colorReg = "(§[0-9a-fik-or])";
+    private static final String COLOR_REG = "(§[0-9a-fik-or])";
     private final Map<String, Integer> damageList = new HashMap<>();
     private final Map<String, Instant> expire = new HashMap<>();
     public int hudX = 450;
@@ -47,14 +43,14 @@ public class Feature {
         if(tickHandle.toEpochMilli()+50 <= Instant.now().toEpochMilli()) {
             tickHandle = Instant.now();
             checkExpires();
-            if(damage != 0 && (isBossStartTitle(getCurrentTitle().replaceAll(colorReg,""))||isBossStartTitle(getCurrentSubTitle().replaceAll(colorReg,"")))) {
+            if(damage != 0 && (isBossStartTitle(getCurrentTitle().replaceAll(COLOR_REG,""))||isBossStartTitle(getCurrentSubTitle().replaceAll(COLOR_REG,"")))) {
                 reset();
             }
             if (level != null) {
                 LocalPlayer pl = mc.player;
                 for(Entity en : level.getEntitiesOfClass(ArmorStand.class,new AABB(pl.getX()-200, pl.getY()-200,pl.getZ()-200,pl.getX()+200, pl.getY()+200,pl.getZ()+200), (ent) -> ent.getDisplayName().getString().contains("-"))) {
                     String name = en.getDisplayName().getString();
-                    name = name.replaceAll(colorReg, "");
+                    name = name.replaceAll(COLOR_REG, "");
                     int c = 0;
                     Matcher m = damageReg.matcher(name);
                     if (m.find()) {
@@ -75,7 +71,7 @@ public class Feature {
 
     }
     public void onChatReceive(Component msg) {
-        String s = msg.getString().replaceAll(colorReg, "");
+        String s = msg.getString().replaceAll(COLOR_REG, "");
         if(isTimeoutString(s)) return;
         timeoutStrings.add(new Removal<>(s, 50));
         //the nameless anomaly boss prepare room lore.

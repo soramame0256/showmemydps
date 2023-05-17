@@ -1,6 +1,5 @@
 package com.github.soramame0256.showmemydps.mixin;
 
-import com.github.soramame0256.showmemydps.ShowMeMyDPS;
 import com.github.soramame0256.showmemydps.util.TitleInjector;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.network.chat.Component;
