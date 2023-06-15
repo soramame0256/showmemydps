@@ -16,7 +16,7 @@ public class ShowMeMyDps {
 
     public static final String MOD_ID = "showmemydps";
     public static final String MOD_NAME = "ShowMeMyDPS";
-    public static final String VERSION = "1.5-SNAPSHOT";
+    public static final String VERSION = "1.6-SNAPSHOT";
     public static EventListener EVENT_LISTENER;
     /**
      * This is the instance of your mod as created by Forge. It will never be null.

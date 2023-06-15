@@ -38,9 +38,9 @@ public class EventListener {
     private long dpsAvg = 0L;
     private final List<Removal<Integer>> dpsAvgDamageList = new ArrayList<>();
     private Instant tickHandle = Instant.now();
-    private boolean isInGreg = false;
+    //private boolean isInGreg = false;
     private boolean gregInit = false;
-    private long invincibleTime = 0L; //it must be used only in tna (tick)
+    //private long invincibleTime = 0L; //it must be used only in tna (tick)
     public static boolean debugMode = false;
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent e) throws IllegalAccessException {
@@ -51,7 +51,7 @@ public class EventListener {
         if(Minecraft.getMinecraft().world != null&& gregInit){
             for(Entity en : Minecraft.getMinecraft().world.getEntities(EntityArmorStand.class, (ent) -> ent.getDisplayName().getFormattedText().equals("§c§9§lThe §1§k12345§9§l Anomaly§r"))) {
                 reset();
-                isInGreg = true;
+                //isInGreg = true;
             }
             if(!gregInit) return;
         }
@@ -63,10 +63,12 @@ public class EventListener {
         }
         if(Minecraft.getMinecraft().world == null) return;
         for(Entity en : Minecraft.getMinecraft().world.getEntities(EntityArmorStand.class, (ent) -> (ent.getDisplayName().getUnformattedText().contains("-")||ent.getDisplayName().getFormattedText().equals("§e§4Sightseeing Interceptor§6 [Lv. 30]§r")))) {
+            /*
             if(isInGreg && en.getDisplayName().getFormattedText().equals("§e§4Sightseeing Interceptor§6 [Lv. 30]§r")){
                 invincibleTime++;
                 continue;
             }
+            */
             String name = en.getDisplayName().getUnformattedText();
             name = name.replaceAll(colorReg, "");
             int c = 0;
@@ -124,13 +126,15 @@ public class EventListener {
             reset();
         } else if(s.startsWith("You finished the Legendary Challenge")){
             ShowCommand.showMsg(Minecraft.getMinecraft().player);
-        } else if(s.contains("[!] The Raid Reward chest has been unlocked.")){
+        } else if(s.startsWith("[!] The Raid Reward chest has been unlocked.")){
+            /*
             if(isInGreg) {
                 ShowCommand.showMsg(Minecraft.getMinecraft().player, invincibleTime);
                 isInGreg=false;
                 invincibleTime=0L;
             }
-            else ShowCommand.showMsg(Minecraft.getMinecraft().player);
+            */
+            ShowCommand.showMsg(Minecraft.getMinecraft().player);
         } else if(s.equals("                        Territory Captured")){
             Thread t = new Thread(()->{
                 try {
@@ -199,9 +203,8 @@ public class EventListener {
         damage = 0L;
         hitCount = 0;
         start = Instant.now();
-        isInGreg = false;
+        //isInGreg = false;
         gregInit = false;
-        invincibleTime = 0L;
     }
     public long getTotalDamage(){
         makeAllExpire();

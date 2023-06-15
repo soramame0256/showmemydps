@@ -63,6 +63,7 @@ public class ShowCommand extends CommandBase {
         sender.sendMessage(new TextComponentString("§bAvg/hit: " + totalDamage/hitCount));
         sender.sendMessage(new TextComponentString("§bTotal: " + totalDamage));
     }
+    /*
     public static void showMsg(ICommandSender sender,long invincibleTime){
         long totalDamage = ShowMeMyDps.EVENT_LISTENER.getTotalDamage();
         int hitCount = ShowMeMyDps.EVENT_LISTENER.getHitCount();
@@ -75,4 +76,5 @@ public class ShowCommand extends CommandBase {
         sender.sendMessage(new TextComponentString("§bAvg/hit: " + totalDamage/hitCount));
         sender.sendMessage(new TextComponentString("§bTotal: " + totalDamage));
     }
+     */
 }

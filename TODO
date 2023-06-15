@@ -1,6 +1,6 @@
 upper one should be developed earlier.
 -Make dps measurement of "the nameless anomaly" to almost accurate.
---(and make dps won't include times during watched)
+--(and make dps won't include times during watched) - Not coming soon or won't develop
 ---but output time should be like
                                   "↪Time: (including time) seconds"
                                   " using: (excluding time) seconds"
