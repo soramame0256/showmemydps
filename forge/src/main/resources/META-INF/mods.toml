@@ -1,7 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "[45,)"
 issueTrackerURL = "https://github.com/soramame0256/showmemydps/issues"
-license = "All Rights Reserved"
+license = "MIT license"
 
 [[mods]]
 modId = "showmemydps"
