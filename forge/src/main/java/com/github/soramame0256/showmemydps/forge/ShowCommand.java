@@ -2,6 +2,7 @@ package com.github.soramame0256.showmemydps.forge;
 
 import com.github.soramame0256.showmemydps.Feature;
 import com.github.soramame0256.showmemydps.ShowMeMyDPS;
+import com.github.soramame0256.showmemydps.util.ChatSender;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -26,6 +27,11 @@ public class ShowCommand {
                 .executes(context -> {
                     fi.showMsg(mc.player);
                     fi.reset();
+                    return 1;
+                })).build();
+        e.then(literal("debug")
+                .executes(context -> {
+                    ChatSender.sendMessage(mc.player,"toggled debug mode to " + (fi.debugMode=!fi.debugMode));
                     return 1;
                 })).build();
         e.then(literal("hud")

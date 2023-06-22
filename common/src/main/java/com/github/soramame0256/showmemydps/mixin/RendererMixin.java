@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class RendererMixin {
     @Inject(method = "render", at = @At(value ="TAIL"))
     private void inject(CallbackInfo ci){
-        ShowMeMyDPS.featureInstance.render();
+        try {
+            ShowMeMyDPS.featureInstance.render();
+        }catch(IllegalAccessException e){
+            e.printStackTrace();
+        }
     }
 }
