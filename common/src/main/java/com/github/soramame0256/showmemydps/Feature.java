@@ -207,6 +207,7 @@ public class Feature {
         damage = 0;
         hitCount = 0;
         start = Instant.now();
+        gregInit=false;
     }
     public long getTotalDamage(){
         makeAllExpire();

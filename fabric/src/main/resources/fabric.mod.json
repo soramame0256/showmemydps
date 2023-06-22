@@ -10,7 +10,7 @@
   "contact": {
     "sources": "https://github.com/soramame0256/showmemydps"
   },
-  "license": "All Rights Reserved",
+  "license": "MIT license",
   "environment": "client",
   "mixins": [{
     "config": "showmemydps-common.mixins.json",
