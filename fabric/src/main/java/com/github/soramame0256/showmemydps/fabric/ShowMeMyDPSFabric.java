@@ -8,8 +8,8 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallba
 public class ShowMeMyDPSFabric implements ModInitializer, ClientModInitializer {
     @Override
     public void onInitialize() {
-        //ShowMeMyDPS.init();
-        //ClientCommandRegistrationCallback.EVENT.register((a,b) -> ShowCommand.register(a));
+        ShowMeMyDPS.init();
+        ClientCommandRegistrationCallback.EVENT.register((a,b) -> ShowCommand.register(a));
     }
     @Override
     public void onInitializeClient() {

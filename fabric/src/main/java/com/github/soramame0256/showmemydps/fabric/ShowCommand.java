@@ -2,6 +2,7 @@ package com.github.soramame0256.showmemydps.fabric;
 
 import com.github.soramame0256.showmemydps.Feature;
 import com.github.soramame0256.showmemydps.ShowMeMyDPS;
+import com.github.soramame0256.showmemydps.util.ChatSender;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -11,7 +12,6 @@ import net.minecraft.client.Minecraft;
 
 import static com.github.soramame0256.showmemydps.util.ChatSender.sendMessage;
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
-
 
 public class ShowCommand {
     public static final Minecraft mc = Minecraft.getInstance();
@@ -29,14 +29,19 @@ public class ShowCommand {
                     fi.reset();
                     return 1;
                 })).build();
+        e.then(literal("debug")
+                .executes(context -> {
+                    ChatSender.sendMessage(mc.player,"toggled debug mode to " + (fi.debugMode=!fi.debugMode));
+                    return 1;
+                })).build();
         e.then(literal("hud")
                 .then(literal("toggle")
-                .executes(context -> {
-                    if (mc.player == null) return 0;
-                    Feature.hud = !Feature.hud;
-                    sendMessage(mc.player, "HUD " + ((Feature.hud) ? "Enabled!" : "Disabled!"));
-                    return 1;
-                }).build()));
+                        .executes(context -> {
+                            if (mc.player == null) return 0;
+                            Feature.hud = !Feature.hud;
+                            sendMessage(mc.player, "HUD " + ((Feature.hud) ? "Enabled!" : "Disabled!"));
+                            return 1;
+                        }).build()));
         e.then(literal("hud").then(RequiredArgumentBuilder.<FabricClientCommandSource, Integer>argument("x", IntegerArgumentType.integer(0, mc.getWindow().getScreenWidth()))
                 .then(RequiredArgumentBuilder.<FabricClientCommandSource, Integer>argument("y", IntegerArgumentType.integer(0, mc.getWindow().getScreenHeight()))
                         .executes(context -> {
