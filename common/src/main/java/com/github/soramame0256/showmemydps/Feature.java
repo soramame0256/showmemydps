@@ -3,16 +3,21 @@ package com.github.soramame0256.showmemydps;
 import com.github.soramame0256.showmemydps.util.ChatSender;
 import com.github.soramame0256.showmemydps.util.Removal;
 import com.github.soramame0256.showmemydps.util.TitleInjector;
+import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.Tesselator;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.Vec3i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Matrix4f;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -125,6 +130,7 @@ public class Feature {
     }
     public void render() {
         if(hud) {
+            MultiBufferSource.BufferSource buffers = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
             if(debugMode){
                 try {
                     List<String> txt = new ArrayList<>();
@@ -136,14 +142,17 @@ public class Feature {
                     }
                     int times = 0;
                     for (String tx : txt) {
-                        mc.font.draw(new PoseStack(), tx, hudX, hudY + mc.font.lineHeight * times++, 0xffffff);
+                        //mc.font.draw(new PoseStack(), tx, hudX, hudY + mc.font.lineHeight * times++, 0xffffff);
+                        mc.font.drawInBatch(tx, hudX, hudY+mc.font.lineHeight*times++, 0xffffff, false, new Matrix4f(), buffers, Font.DisplayMode.SEE_THROUGH, 0, 1);
                     }
                 }catch(IllegalAccessException e){
                     e.printStackTrace();
                 }
             }else{
-                mc.font.draw(new PoseStack(),"RealDPS: " + dpsAvg, hudX, hudY,0xffffff);
+                mc.font.drawInBatch("RealDPS: " + dpsAvg, hudX, hudY, 0xffffff, false, new Matrix4f(), buffers, Font.DisplayMode.SEE_THROUGH, 0, 1);
+                //mc.font.draw(new PoseStack(),"RealDPS: " + dpsAvg, hudX, hudY,0xffffff);
             }
+            buffers.endBatch();
         }
     }
     private boolean isBossStartTitle(String a){
