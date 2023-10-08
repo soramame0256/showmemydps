@@ -62,9 +62,8 @@ public class Feature {
                 LocalPlayer pl = mc.player;
                 if(pl ==null) return;
                 if(gregInit) {
-                    for (Entity en : level.getEntitiesOfClass(ArmorStand.class,new AABB(pl.getX()-200, pl.getY()-200,pl.getZ()-200,pl.getX()+200, pl.getY()+200,pl.getZ()+200), (ent) -> true)) {//ent.getDisplayName().getString().equals("§c§9§lThe §1§k12345§9§l Anomaly§r")
+                    for (Entity en : level.getEntitiesOfClass(ArmorStand.class,new AABB(pl.getX()-200, pl.getY()-200,pl.getZ()-200,pl.getX()+200, pl.getY()+200,pl.getZ()+200), (ent) -> ent.getDisplayName().getString().equals("§c§9§lThe §1§k12345§9§l Anomaly"))){
                         reset();
-                        System.out.println(en.getDisplayName().getString());
                     };
                 }
                 for(Entity en : level.getEntitiesOfClass(ArmorStand.class,new AABB(pl.getX()-200, pl.getY()-200,pl.getZ()-200,pl.getX()+200, pl.getY()+200,pl.getZ()+200), (ent) -> ent.getDisplayName().getString().contains("-"))) {
