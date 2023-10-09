@@ -16,13 +16,13 @@ A Simple Mod that shows you damage result
 [[dependencies.showmemydps]]
 modId = "forge"
 mandatory = true
-versionRange = "[45,)"
+versionRange = "[48,)"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.showmemydps]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.19.4,)"
+versionRange = "[1.20.2,)"
 ordering = "NONE"
 side = "CLIENT"
