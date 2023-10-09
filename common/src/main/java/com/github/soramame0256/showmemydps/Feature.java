@@ -3,22 +3,20 @@ package com.github.soramame0256.showmemydps;
 import com.github.soramame0256.showmemydps.util.ChatSender;
 import com.github.soramame0256.showmemydps.util.Removal;
 import com.github.soramame0256.showmemydps.util.TitleInjector;
-import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.core.Vec3i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.time.Instant;
@@ -28,7 +26,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class Feature {
     private static final Pattern damageReg = Pattern.compile("-(?<damage>\\d+) .");
@@ -51,6 +48,27 @@ public class Feature {
     private static final Minecraft mc = Minecraft.getInstance();
     //Sometimes(or Always?) received messages are used as doubled. so it fixes them.
     private final List<Removal<String>> timeoutStrings = new ArrayList<>();
+
+    public Feature(@Nullable Data data) {
+        if(data!=null){
+            this.debugMode = data.getBoolean("debugMode", false);
+            this.hudX = data.getInteger("hudX", 450);
+            this.hudY = data.getInteger("hudY", 460);
+            hud = data.getBoolean("hud",false);
+            Runtime.getRuntime().addShutdownHook(new Thread(()->{
+                data.set("debugMode", this.debugMode);
+                data.set("hudX", this.hudX);
+                data.set("hudY",this.hudY);
+                data.set("hud",hud);
+                try {
+                    data.flush();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }));
+        }
+    }
+
     public void tick(ClientLevel level){
         if(tickHandle.toEpochMilli()+50 <= Instant.now().toEpochMilli()) {
             tickHandle = Instant.now();
