@@ -12,7 +12,8 @@ Download Latest:<br>(1.12.2)<https://github.com/soramame0256/showmemydps/release
 <br>(1.19.4)<https://github.com/soramame0256/showmemydps/releases/tag/1.19.4-1.0.0.fix.1>
 <br>Note:
 <br><b>This mod requires Fabric-API if you use Fabric or Quilt.</b>
-If you have any idea or encounter a bug or crashes, feel free to make issue!
+<br>If you have any idea or encounter a bug or crashes, feel free to make issue!
+
 # What are the outputs
 DPS: Average DPS during the battle
 <br>
