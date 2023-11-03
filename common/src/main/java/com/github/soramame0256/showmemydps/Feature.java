@@ -20,10 +20,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -208,8 +205,8 @@ public class Feature {
         if(expire.size() == 0) return;
         long i = Instant.now().toEpochMilli();
         List<String> toRemove = new ArrayList<>();
-        dpsAvgDamageList.removeAll(dpsAvgDamageList.stream().filter(Removal::checkExpire).toList());
-        timeoutStrings.removeAll(timeoutStrings.stream().filter(Removal::checkExpire).toList());
+        dpsAvgDamageList.removeIf(Removal::checkExpire);
+        timeoutStrings.removeIf(Removal::checkExpire);
         dpsAvg= 0;
         dpsAvgDamageList.forEach(a -> dpsAvg += a.b);
         for(Map.Entry<String, Instant> ep : expire.entrySet()){
