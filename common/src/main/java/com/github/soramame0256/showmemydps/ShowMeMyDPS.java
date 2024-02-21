@@ -7,7 +7,6 @@ public class ShowMeMyDPS {
 
     public static Feature featureInstance;
     public static Data data = null;
-    // We can use this if we don't want to use DeferredRegister
     public static void init() {
         try {
             data = new Data();

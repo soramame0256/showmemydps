@@ -25,7 +25,14 @@ public class Data {
             writer.flush();
             writer.close();
         }
-        jsonObject = JsonParser.parseReader(new FileReader(this.filePath)).getAsJsonObject();
+        JsonObject j;
+        try {
+            j = JsonParser.parseReader(new FileReader(this.filePath)).getAsJsonObject();
+        }catch(IllegalStateException e){ //idk why data.json going empty. but it sometimes occurs, so.
+            j = new JsonObject();
+            System.out.println("datafile is broken. so using new object.");
+        }
+        jsonObject = j;
     }
     public void set(String key, boolean b){
         jsonObject.addProperty(key,b);
