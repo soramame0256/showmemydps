@@ -43,9 +43,6 @@ public class Feature {
     private final List<Removal<Integer>> dpsAvgDamageList = new ArrayList<>();
     private Instant tickHandle = Instant.now();
     private static final Minecraft mc = Minecraft.getInstance();
-    //Sometimes(or Always?) received messages are used as doubled. so it fixes them.
-    private final List<Removal<String>> timeoutStrings = new ArrayList<>();
-
     public Feature(@Nullable Data data) {
         if(data!=null){
             this.debugMode = data.getBoolean("debugMode", false);
@@ -105,8 +102,6 @@ public class Feature {
     }
     public void onChatReceive(Component msg) {
         String s = msg.getString().replaceAll(colorReg, "");
-        if(isTimeoutString(s)) return;
-        timeoutStrings.add(new Removal<>(s, 50));
         //the nameless anomaly boss prepare room lore.
         if (s.startsWith("And what is responsible? What remains here should not- trapped far from whence it came. What feeds the paradox")) {
             reset();
@@ -172,12 +167,6 @@ public class Feature {
     private boolean isBossStartTitle(String a){
         return a.equals("The defense system") || a.equals("The Light Beast") || a.equals("The Grootslang Wyrmlings");
     }
-    private boolean isTimeoutString(String s){
-        for(Removal<String> a: timeoutStrings){
-            if(s.equals(a.b)) return true;
-        }
-        return false;
-    }
     private void addDamage(String uuid, Integer da){
         int g = damageList.getOrDefault(uuid, 0);
         if(g < da){
@@ -206,7 +195,6 @@ public class Feature {
         long i = Instant.now().toEpochMilli();
         List<String> toRemove = new ArrayList<>();
         dpsAvgDamageList.removeIf(Removal::checkExpire);
-        timeoutStrings.removeIf(Removal::checkExpire);
         dpsAvg= 0;
         dpsAvgDamageList.forEach(a -> dpsAvg += a.b);
         for(Map.Entry<String, Instant> ep : expire.entrySet()){
