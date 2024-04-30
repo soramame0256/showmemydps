@@ -74,9 +74,9 @@ public class Feature {
                 LocalPlayer pl = mc.player;
                 if(pl ==null) return;
                 if(gregInit) {
-                    for (Entity en : level.getEntitiesOfClass(ArmorStand.class,new AABB(pl.getX()-200, pl.getY()-200,pl.getZ()-200,pl.getX()+200, pl.getY()+200,pl.getZ()+200), (ent) -> ent.getDisplayName().getString().equals("§c§9§lThe §1§k12345§9§l Anomaly"))){
+                    for (Entity ignored : level.getEntitiesOfClass(ArmorStand.class,new AABB(pl.getX()-200, pl.getY()-200,pl.getZ()-200,pl.getX()+200, pl.getY()+200,pl.getZ()+200), (ent) -> ent.getDisplayName().getString().equals("§c§9§lThe §1§k12345§9§l Anomaly"))){
                         reset();
-                    };
+                    }
                 }
                 for(Entity en : level.getEntitiesOfClass(ArmorStand.class,new AABB(pl.getX()-200, pl.getY()-200,pl.getZ()-200,pl.getX()+200, pl.getY()+200,pl.getZ()+200), (ent) -> ent.getDisplayName().getString().contains("-"))) {
                     String name = en.getDisplayName().getString();
@@ -191,7 +191,7 @@ public class Feature {
 
     }
     private void checkExpires(){
-        if(expire.size() == 0) return;
+        if(expire.isEmpty()) return;
         long i = Instant.now().toEpochMilli();
         List<String> toRemove = new ArrayList<>();
         dpsAvgDamageList.removeIf(Removal::checkExpire);
@@ -210,7 +210,7 @@ public class Feature {
         }
     }
     private void makeAllExpire(){
-        if(expire.size() == 0) return;
+        if(expire.isEmpty()) return;
         List<String> toRemove = new ArrayList<>(damageList.keySet());
         for(String r : toRemove){
             damage += damageList.get(r);
