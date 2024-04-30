@@ -127,6 +127,7 @@ public class Feature {
         }
     }
     public void showMsg(LocalPlayer p){
+        makeAllExpire();
         long totalDamage = this.getTotalDamage();
         int hitCount = this.getHitCount();
         if(hitCount == 0) hitCount++;
@@ -228,7 +229,6 @@ public class Feature {
         gregInit=false;
     }
     public long getTotalDamage(){
-        makeAllExpire();
         return damage;
 
     }
@@ -236,7 +236,6 @@ public class Feature {
         return start;
     }
     public int getHitCount(){
-        makeAllExpire();
         return hitCount;
     }
 }
