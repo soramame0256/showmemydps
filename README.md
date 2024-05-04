@@ -10,7 +10,7 @@ It automatically counts the damage after the start of the following battles and 
 Download Latest:<br>(1.12.2)<https://github.com/soramame0256/showmemydps/releases/download/1.6-SNAPSHOT/showmemydps-1.6-SNAPSHOT.jar>
 <br>(1.19.3)<https://github.com/soramame0256/showmemydps/releases/tag/1.19.3-1.0.0-fix.1>
 <br>(1.19.4)<https://github.com/soramame0256/showmemydps/releases/tag/1.19.4-1.0.0.fix.1>
-<br>(1.20.2)<https://github.com/soramame0256/showmemydps/releases/tag/1.20.2-1.1.1.fix.2>
+<br>(1.20.2)<https://github.com/soramame0256/showmemydps/releases/tag/1.20.2-1.1.1.fix.3>
 <br>Note:
 <br><b>This mod requires Fabric-API if you use Fabric or Quilt.</b>
 <br>If you have any idea or encounter a bug or crashes, feel free to make issue!
