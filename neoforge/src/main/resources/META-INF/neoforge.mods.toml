@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[48,)"
+loaderVersion = "[4,)"
 issueTrackerURL = "https://github.com/soramame0256/showmemydps/issues"
 license = "MIT license"
 
@@ -14,15 +14,19 @@ A Simple Mod that shows you damage result
 #logoFile = ""
 
 [[dependencies.showmemydps]]
-modId = "forge"
-mandatory = true
-versionRange = "[48,)"
+modId = "neoforge"
+type = "required"
+versionRange = "[21.0,)"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.showmemydps]]
 modId = "minecraft"
-mandatory = true
-versionRange = "[1.20.2,)"
+type = "required"
+versionRange = "[1.21,)"
 ordering = "NONE"
 side = "CLIENT"
+
+[[mixin]]
+config="showmemydps-common.mixins.json"
+

@@ -1,7 +1,8 @@
-package com.github.soramame0256.showmemydps.quilt;
+package com.github.soramame0256.neoforge;
 
 import com.github.soramame0256.showmemydps.Feature;
 import com.github.soramame0256.showmemydps.ShowMeMyDPS;
+import com.github.soramame0256.showmemydps.util.ChatSender;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -36,6 +37,12 @@ public class ShowCommand {
                     sendMessage(mc.player, "HUD " + ((Feature.hud) ? "Enabled!" : "Disabled!"));
                     return 1;
                 }).build()));
+        e.then(literal("debug")
+                .executes(context -> {
+                    if (mc.player == null) return 0;
+                    ChatSender.sendMessage(mc.player,"toggled debug mode to " + (fi.debugMode=!fi.debugMode));
+                    return 1;
+                })).build();
         e.then(literal("hud").then(RequiredArgumentBuilder.<CommandSourceStack, Integer>argument("x", IntegerArgumentType.integer(0, mc.getWindow().getScreenWidth()))
                 .then(RequiredArgumentBuilder.<CommandSourceStack, Integer>argument("y", IntegerArgumentType.integer(0, mc.getWindow().getScreenHeight()))
                         .executes(context -> {

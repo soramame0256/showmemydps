@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "com.github.soramame0256.showmemydps.mixin",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "client": [
     "GuiMixin",
     "MinecraftMixin",

@@ -3,7 +3,10 @@ package com.github.soramame0256.showmemydps;
 import com.github.soramame0256.showmemydps.util.ChatSender;
 import com.github.soramame0256.showmemydps.util.Removal;
 import com.github.soramame0256.showmemydps.util.TitleInjector;
+import com.mojang.blaze3d.vertex.BufferBuilder;
+import com.mojang.blaze3d.vertex.ByteBufferBuilder;
 import com.mojang.blaze3d.vertex.Tesselator;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -140,7 +143,7 @@ public class Feature {
     }
     public void render() {
         if(hud) {
-            MultiBufferSource.BufferSource buffers = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
+            MultiBufferSource.BufferSource buffers = MultiBufferSource.immediate(new ByteBufferBuilder(256));
             if(debugMode){
                 try {
                     List<String> txt = new ArrayList<>();

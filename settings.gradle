@@ -9,7 +9,7 @@ pluginManagement {
 
 include("common")
 include("fabric")
-include("quilt")
-include("forge")
+include("neoforge")
+//include("forge")
 
 rootProject.name = "showmemydps"
