@@ -1,8 +1,11 @@
-package com.github.soramame0256.neoforge;
+package com.github.soramame0256.showmemydps.neoforge;
 
 import com.github.soramame0256.showmemydps.ShowMeMyDPS;
+import net.minecraft.client.Minecraft;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.ClientChatReceivedEvent;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -21,5 +24,13 @@ public class ShowMeMyDPSNeoForge {
     @SubscribeEvent
     public void onRender(RenderGuiLayerEvent.Post e){
         ShowMeMyDPS.featureInstance.render();
+    }
+    @SubscribeEvent
+    public void onChatReceived(ClientChatReceivedEvent.System e){
+        if(!e.isOverlay()) ShowMeMyDPS.featureInstance.onChatReceive(e.getMessage());
+    }
+    @SubscribeEvent
+    public void onTick(ClientTickEvent.Post e){
+        ShowMeMyDPS.featureInstance.tick(Minecraft.getInstance().level);
     }
 }
