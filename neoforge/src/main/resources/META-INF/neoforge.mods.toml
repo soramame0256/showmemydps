@@ -27,6 +27,6 @@ versionRange = "[1.21,)"
 ordering = "NONE"
 side = "CLIENT"
 
-[[mixin]]
+[[mixins]]
 config="showmemydps-common.mixins.json"
 
