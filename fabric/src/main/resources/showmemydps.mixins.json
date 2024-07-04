@@ -3,7 +3,9 @@
   "package": "com.github.soramame0256.showmemydps.fabric.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
-    "GuiMixinFabric"
+    "GuiMixinFabric",
+    "MinecraftMixin",
+    "SystemChatMixin"
   ],
   "mixins": [
   ],

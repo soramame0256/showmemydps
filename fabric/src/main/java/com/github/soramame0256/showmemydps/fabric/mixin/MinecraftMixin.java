@@ -1,4 +1,4 @@
-package com.github.soramame0256.showmemydps.mixin;
+package com.github.soramame0256.showmemydps.fabric.mixin;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;

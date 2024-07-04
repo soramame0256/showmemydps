@@ -1,4 +1,4 @@
-package com.github.soramame0256.showmemydps.mixin;
+package com.github.soramame0256.showmemydps.fabric.mixin;
 
 import com.github.soramame0256.showmemydps.ShowMeMyDPS;
 import net.minecraft.client.multiplayer.ClientPacketListener;

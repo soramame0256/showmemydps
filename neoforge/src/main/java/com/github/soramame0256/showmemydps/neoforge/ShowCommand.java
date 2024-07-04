@@ -1,4 +1,4 @@
-package com.github.soramame0256.neoforge;
+package com.github.soramame0256.showmemydps.neoforge;
 
 import com.github.soramame0256.showmemydps.Feature;
 import com.github.soramame0256.showmemydps.ShowMeMyDPS;
