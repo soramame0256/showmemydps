@@ -30,12 +30,4 @@ public class GuiMixin {
     private void inject(CallbackInfo ci){
         ShowMeMyDPS.featureInstance.render();
     }
-    @Inject(method = "tick()V", at = @At(value="FIELD",target = "Lnet/minecraft/client/gui/Gui;title:Lnet/minecraft/network/chat/Component;", opcode = PUTFIELD))
-    private void titleInject(CallbackInfo ci){
-        TitleInjector.title = null;
-    }
-    @Inject(method = "tick()V", at = @At(value="FIELD",target = "Lnet/minecraft/client/gui/Gui;subtitle:Lnet/minecraft/network/chat/Component;", opcode = PUTFIELD))
-    private void subTitleInject(CallbackInfo ci){
-        TitleInjector.subTitle = null;
-    }
 }

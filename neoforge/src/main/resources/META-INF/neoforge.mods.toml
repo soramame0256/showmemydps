@@ -30,3 +30,5 @@ side = "CLIENT"
 [[mixins]]
 config="showmemydps-common.mixins.json"
 
+[[mixins]]
+config="showmemydps.mixins.json"
