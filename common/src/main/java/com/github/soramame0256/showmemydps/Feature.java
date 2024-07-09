@@ -156,7 +156,6 @@ public class Feature {
                     }
                     int times = 0;
                     for (String tx : txt) {
-                        //mc.font.draw(new PoseStack(), tx, hudX, hudY + mc.font.lineHeight * times++, 0xffffff);
                         mc.font.drawInBatch(tx, hudX, hudY+mc.font.lineHeight*times++, 0xffffff, false, new Matrix4f(), buffers, Font.DisplayMode.SEE_THROUGH, 0, 1);
                     }
                 }catch(IllegalAccessException e){
@@ -164,7 +163,6 @@ public class Feature {
                 }
             }else{
                 mc.font.drawInBatch("RealDPS: " + dpsAvg, hudX, hudY, 0xffffff, false, new Matrix4f(), buffers, Font.DisplayMode.SEE_THROUGH, 0, 1);
-                //mc.font.draw(new PoseStack(),"RealDPS: " + dpsAvg, hudX, hudY,0xffffff);
             }
             buffers.endBatch();
         }
