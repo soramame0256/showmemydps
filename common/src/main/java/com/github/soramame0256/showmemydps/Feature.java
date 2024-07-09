@@ -33,8 +33,8 @@ public class Feature {
     private static final String colorReg = "(§[0-9a-fik-or])";
     private final Map<String, Integer> damageList = new HashMap<>();
     private final Map<String, Instant> expire = new HashMap<>();
-    public int hudX = 450;
-    public int hudY = 460;
+    private int hudX = 450;
+    private int hudY = 460;
     private boolean gregInit = false;
     private Instant start = Instant.now();
     private static final int EXPIRE_WHEN = 5000;
@@ -102,6 +102,10 @@ public class Feature {
             }
         }
 
+    }
+    public void setHudPos(int x, int y){
+        this.hudX = x;
+        this.hudY = y;
     }
     public void onChatReceive(Component msg) {
         String s = msg.getString().replaceAll(colorReg, "");

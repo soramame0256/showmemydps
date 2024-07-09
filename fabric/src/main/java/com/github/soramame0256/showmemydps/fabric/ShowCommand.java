@@ -46,8 +46,7 @@ public class ShowCommand {
                 .then(RequiredArgumentBuilder.<FabricClientCommandSource, Integer>argument("y", IntegerArgumentType.integer(0, mc.getWindow().getScreenHeight()))
                         .executes(context -> {
                             if (mc.player == null) return 0;
-                            fi.hudX = context.getArgument("x", Integer.class);
-                            fi.hudY = context.getArgument("y", Integer.class);
+                            fi.setHudPos(context.getArgument("x", Integer.class),context.getArgument("y", Integer.class));
                             sendMessage(mc.player, "HUD Location Changed!");
                             return 1;
                         })
