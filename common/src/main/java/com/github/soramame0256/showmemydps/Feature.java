@@ -204,7 +204,7 @@ public class Feature {
         List<String> toRemove = new ArrayList<>();
         dpsAvgDamageList.removeIf(Removal::checkExpire);
         dpsAvg= 0;
-        dpsAvgDamageList.forEach(a -> dpsAvg += a.b);
+        dpsAvgDamageList.forEach(a -> dpsAvg += a.getB());
         for(Map.Entry<String, Instant> ep : expire.entrySet()){
             if(ep.getValue().toEpochMilli() + EXPIRE_WHEN <= i){
                 damage += damageList.get(ep.getKey());
