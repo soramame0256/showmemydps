@@ -13,6 +13,6 @@ public class SystemChatMixin {
 
     @Inject(method = "handleSystemChat", at = @At(value = "INVOKE",target = "Lnet/minecraft/network/protocol/PacketUtils;ensureRunningOnSameThread(Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketListener;Lnet/minecraft/util/thread/BlockableEventLoop;)V",shift = At.Shift.AFTER))
     private void inject(ClientboundSystemChatPacket clientboundSystemChatPacket, CallbackInfo ci){
-        if(!clientboundSystemChatPacket.overlay()) ShowMeMyDPS.featureInstance.onChatReceive(clientboundSystemChatPacket.content());
+        if(!clientboundSystemChatPacket.overlay()) ShowMeMyDPS.getInstance().onChatReceive(clientboundSystemChatPacket.content());
     }
 }

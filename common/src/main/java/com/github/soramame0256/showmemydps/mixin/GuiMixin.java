@@ -28,6 +28,6 @@ public class GuiMixin {
     }
     @Inject(method = "render", at = @At(value ="TAIL"))
     private void inject(CallbackInfo ci){
-        ShowMeMyDPS.featureInstance.render();
+        ShowMeMyDPS.getInstance().render();
     }
 }

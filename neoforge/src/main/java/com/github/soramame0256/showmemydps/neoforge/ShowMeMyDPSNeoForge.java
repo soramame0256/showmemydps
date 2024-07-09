@@ -23,14 +23,14 @@ public class ShowMeMyDPSNeoForge {
     }
     @SubscribeEvent
     public void onRender(RenderGuiLayerEvent.Post e){
-        ShowMeMyDPS.featureInstance.render();
+        ShowMeMyDPS.getInstance().render();
     }
     @SubscribeEvent
     public void onChatReceived(ClientChatReceivedEvent.System e){
-        if(!e.isOverlay()) ShowMeMyDPS.featureInstance.onChatReceive(e.getMessage());
+        if(!e.isOverlay()) ShowMeMyDPS.getInstance().onChatReceive(e.getMessage());
     }
     @SubscribeEvent
     public void onTick(ClientTickEvent.Post e){
-        ShowMeMyDPS.featureInstance.tick(Minecraft.getInstance().level);
+        ShowMeMyDPS.getInstance().tick(Minecraft.getInstance().level);
     }
 }

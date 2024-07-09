@@ -5,8 +5,8 @@ import java.io.IOException;
 public class ShowMeMyDPS {
     public static final String MOD_ID = "showmemydps";
 
-    public static Feature featureInstance;
-    public static Data data = null;
+    private static Feature featureInstance;
+    private static Data data = null;
     public static void init() {
         try {
             data = new Data();
@@ -15,5 +15,13 @@ public class ShowMeMyDPS {
             e.printStackTrace();
         }
         featureInstance = new Feature(data);
+    }
+
+    public static Feature getInstance() {
+        return featureInstance;
+    }
+
+    public static Data getData() {
+        return data;
     }
 }

@@ -15,7 +15,7 @@ import static net.minecraft.commands.Commands.literal;
 
 public class ShowCommand {
     public static final Minecraft mc = Minecraft.getInstance();
-    public static final Feature fi = ShowMeMyDPS.featureInstance;
+    public static final Feature fi = ShowMeMyDPS.getInstance();
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> e = literal("showdps")

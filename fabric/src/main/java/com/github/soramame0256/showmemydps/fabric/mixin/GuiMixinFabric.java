@@ -15,7 +15,7 @@ import static org.objectweb.asm.Opcodes.PUTFIELD;
 public class GuiMixinFabric {
     @Inject(method = "render", at = @At(value ="TAIL"))
     private void inject(CallbackInfo ci){
-        ShowMeMyDPS.featureInstance.render();
+        ShowMeMyDPS.getInstance().render();
     }
     @Inject(method = "tick()V", at = @At(value="FIELD",target = "Lnet/minecraft/client/gui/Gui;title:Lnet/minecraft/network/chat/Component;", opcode = PUTFIELD))
     private void titleInject(CallbackInfo ci){
