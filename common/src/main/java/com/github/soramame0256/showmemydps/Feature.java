@@ -9,8 +9,10 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Display;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.AABB;
@@ -45,6 +47,8 @@ public class Feature {
     private static EntityDataAccessor<Component> DATA_TEXT_ID;
     private Instant tickHandle = Instant.now();
     private static final Minecraft mc = Minecraft.getInstance();
+    private static final MultiBufferSource.BufferSource MULTI_BUFFER_SOURCE = MultiBufferSource.immediate(new ByteBufferBuilder(256));
+
     public Feature(@Nullable Data data) {
         if(data!=null){
             this.debugMode = data.getBoolean("debugMode", false);
@@ -68,9 +72,16 @@ public class Feature {
     public static Component getTextFromTextDisplay(Display.TextDisplay t){
         if(DATA_TEXT_ID==null) {
             try {
-                Field f = Display.TextDisplay.class.getDeclaredField("DATA_TEXT_ID");
-                DATA_TEXT_ID = (EntityDataAccessor<Component>) f.get(t);
-            } catch (NoSuchFieldException | IllegalAccessException e) {
+                for (Field e : Display.TextDisplay.class.getDeclaredFields()) {
+                    if (e.getName().equals("TEXT") || e.getName().equals("DATA_TEXT_ID") || e.getName().equals("field_42435")) {
+                        boolean b = e.isAccessible();
+                        e.setAccessible(true);
+                        DATA_TEXT_ID = (EntityDataAccessor<Component>) e.get(t);
+                        e.setAccessible(b);
+                        break;
+                    }
+                }
+            } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -129,7 +140,7 @@ public class Feature {
             reset();
         } else if(s.startsWith("You finished the Legendary Challenge")){
             this.showMsg(mc.player);
-        } else if(s.startsWith("[!] The Raid Reward chest has been unlocked.")){
+        } else if(msg.getString().endsWith("§6§lRaid Completed!")){
             this.showMsg(mc.player);
         } else if(s.equals("                        Territory Captured")){
             Thread t = new Thread(()->{
@@ -157,7 +168,6 @@ public class Feature {
     }
     public void render() {
         if(hud) {
-            MultiBufferSource.BufferSource buffers = MultiBufferSource.immediate(new ByteBufferBuilder(256));
             if(debugMode){
                 try {
                     List<String> txt = new ArrayList<>();
@@ -169,15 +179,17 @@ public class Feature {
                     }
                     int times = 0;
                     for (String tx : txt) {
-                        mc.font.drawInBatch(tx, hudX, hudY+mc.font.lineHeight*times++, 0xffffff, false, new Matrix4f(), buffers, Font.DisplayMode.SEE_THROUGH, 0, 1);
+                        mc.font.drawInBatch(tx, hudX, hudY+mc.font.lineHeight*times++, 0xffffff, false, new Matrix4f(), MULTI_BUFFER_SOURCE, Font.DisplayMode.SEE_THROUGH, 0, 1);
                     }
                 }catch(IllegalAccessException e){
+                    MULTI_BUFFER_SOURCE.endBatch();
                     e.printStackTrace();
                 }
             }else{
-                mc.font.drawInBatch("RealDPS: " + dpsAvg, hudX, hudY, 0xffffff, false, new Matrix4f(), buffers, Font.DisplayMode.SEE_THROUGH, 0, 1);
+                mc.font.drawInBatch("RealDPS: " + dpsAvg, hudX, hudY, 0xffffff, false, new Matrix4f(), MULTI_BUFFER_SOURCE, Font.DisplayMode.SEE_THROUGH, 0, 1);
+
             }
-            buffers.endBatch();
+            MULTI_BUFFER_SOURCE.endBatch();
         }
     }
     private boolean isBossStartTitle(String a){
