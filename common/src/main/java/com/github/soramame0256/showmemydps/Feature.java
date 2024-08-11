@@ -161,6 +161,7 @@ public class Feature {
         if(hitCount == 0) hitCount++;
         Instant instant = this.getStartWhen();
         long in = Instant.now().getEpochSecond() - instant.getEpochSecond();
+        if (in == 0) in++;
         ChatSender.sendMessage(p,"§bDPS: " + totalDamage / in);
         ChatSender.sendMessage(p,"§b→Time: " + in + " seconds");
         ChatSender.sendMessage(p,"§bAvg/hit: " + totalDamage/hitCount);
