@@ -10,8 +10,9 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.world.entity.Display;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
@@ -41,6 +42,7 @@ public class Feature {
     private long dpsAvg = 0L;
     public boolean debugMode = false;
     private final List<Removal<Integer>> dpsAvgDamageList = new ArrayList<>();
+    private static EntityDataAccessor<Component> DATA_TEXT_ID;
     private Instant tickHandle = Instant.now();
     private static final Minecraft mc = Minecraft.getInstance();
     public Feature(@Nullable Data data) {
@@ -63,6 +65,17 @@ public class Feature {
         }
     }
 
+    public static Component getTextFromTextDisplay(Display.TextDisplay t){
+        if(DATA_TEXT_ID==null) {
+            try {
+                Field f = Display.TextDisplay.class.getDeclaredField("DATA_TEXT_ID");
+                DATA_TEXT_ID = (EntityDataAccessor<Component>) f.get(t);
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return t.getEntityData().get(DATA_TEXT_ID);
+    }
     public void tick(ClientLevel level){
         if(tickHandle.toEpochMilli()+50 <= Instant.now().toEpochMilli()) {
             tickHandle = Instant.now();
@@ -74,12 +87,12 @@ public class Feature {
                 LocalPlayer pl = mc.player;
                 if(pl ==null) return;
                 if(gregInit) {
-                    for (Entity ignored : level.getEntitiesOfClass(ArmorStand.class,new AABB(pl.getX()-200, pl.getY()-200,pl.getZ()-200,pl.getX()+200, pl.getY()+200,pl.getZ()+200), (ent) -> ent.getDisplayName().getString().equals("§c§9§lThe §1§k12345§9§l Anomaly"))){
+                    for (Entity ignored : level.getEntitiesOfClass(Display.TextDisplay.class,new AABB(pl.getX()-200, pl.getY()-200,pl.getZ()-200,pl.getX()+200, pl.getY()+200,pl.getZ()+200), (ent) -> getTextFromTextDisplay(ent).getString().equals("§c§9§lThe §1§k12345§9§l Anomaly"))){
                         reset();
                     }
                 }
-                for(Entity en : level.getEntitiesOfClass(ArmorStand.class,new AABB(pl.getX()-200, pl.getY()-200,pl.getZ()-200,pl.getX()+200, pl.getY()+200,pl.getZ()+200), (ent) -> ent.getDisplayName().getString().contains("-"))) {
-                    String name = en.getDisplayName().getString();
+                for(Display.TextDisplay en : level.getEntitiesOfClass(Display.TextDisplay.class,new AABB(pl.getX()-200, pl.getY()-200,pl.getZ()-200,pl.getX()+200, pl.getY()+200,pl.getZ()+200), (ent) -> getTextFromTextDisplay(ent).getString().contains("-"))) {
+                    String name = getTextFromTextDisplay(en).getString();
                     name = name.replaceAll(colorReg, "");
                     int c = 0;
                     Matcher m = damageReg.matcher(name);
