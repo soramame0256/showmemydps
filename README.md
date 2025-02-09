@@ -1,7 +1,8 @@
 # ShowMeMyDPS
 This is a mod to show total damage within a specific period of time
 
-It automatically counts the damage after the start of the following battles and displays the result in the chat box after the battle is over
+<s>It automatically counts the damage after the start of the following battles and displays the result in the chat box after the battle is over</s>
+Won't work currently.
 <br>
 ・During the battle with Raid bosses (Grootslang, Orphion, Canyon Colossus, Greg)
 <br>
@@ -50,7 +51,7 @@ Spells/abilities such as Guardian Angel will not be counted perfectly.
 
 Please note these will cause errors in the damage outputs
 # How to use
-・In Raid Boss/Legendary Island/Guild War
+・<s>In Raid Boss</s>/Legendary Island/Guild War
 <br>
 The count will start automatically after the start of the battle
 <br>
