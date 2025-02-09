@@ -21,7 +21,7 @@ public class GuiMixin {
     private void setSubTitleInject(Component component, CallbackInfo ci){
         TitleInjector.subTitle = component;
     }
-    @Inject(method = "clear", at = @At(value = "HEAD"))
+    @Inject(method = "clearTitles", at = @At(value = "HEAD"))
     private void clearInject(CallbackInfo ci){
         TitleInjector.title = null;
         TitleInjector.subTitle = null;
